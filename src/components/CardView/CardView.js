@@ -23,28 +23,20 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    // height: 150,
     margin: "10px 20px",
     textAlign: "left",
     color: theme.palette.text.secondary,
   },
   image: {
     width: 128,
-    // height: 128,
   },
-  // img: {
-  //   margin: "auto",
-  //   display: "block",
-  //   maxWidth: "100%",
-  //   maxHeight: "100%",
-  // },
 }));
 
 const CardView = ({ item }) => {
   const history = useHistory();
   const classes = useStyles();
   const viewListing = (id) => {
-    history && history.push(`/listingview?id=${id}`);
+    history && history.push(`/listingview/${id}`);
   };
   return (
     <div className="CardView">
@@ -53,12 +45,19 @@ const CardView = ({ item }) => {
           <MDBCard onClick={() => viewListing(item.id)}>
             <MDBCardImage className="img-fluid" src={item.logo} waves />
             <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
+              <MDBCardTitle>{item.Name}</MDBCardTitle>
+              <MDBCardText></MDBCardText>
               <MDBCardText>
-                Some quick example text to build on the card title and make up
-                the bulk of the card&apos;s content.
+                Pickup: {item["pick-up-from"]} to {item["pick-up-until"]}
               </MDBCardText>
-              <MDBBtn href="#">MDBBtn</MDBBtn>
+              <MDBCardText>Address: {item.address}</MDBCardText>
+              <Grid item>
+                {item.stocked && <img src={car} />}
+                {item.collected && <img src={box} />}
+                {item.delivered && item.checked && item.stocked && (
+                  <img src={check} />
+                )}
+              </Grid>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -106,13 +105,7 @@ const CardView = ({ item }) => {
                     {item.address}
                   </Typography>
                 </Grid>
-                <Grid item>
-                  {item.stocked && <img src={car} />}
-                  {item.collected && <img src={box} />}
-                  {item.delivered && item.checked && item.stocked && (
-                    <img src={check} />
-                  )}
-                </Grid>
+  
               </Grid>
               <Grid item>
                 <img src={item.logo} />
