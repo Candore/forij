@@ -25,7 +25,7 @@ const LoaderboardView = () => (
           grocery store at coral way
         </p>
         <h3 style={{ marginBottom: 20, marginTop: 20 }}>
-          Giftcards and Coupins
+          Giftcards and Coupons
         </h3>
         <p>
           <span style={{ fontWeight: 500, marginRight: 10 }}>
